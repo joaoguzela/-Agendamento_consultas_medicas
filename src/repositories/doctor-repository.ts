@@ -14,11 +14,7 @@ export class PrismaDoctorRepository implements DoctorRepository {
         id,
       },
       include: {
-        MedicalAppointment: {
-          include: {
-            patient: true,
-          },
-        },
+        MedicalAppointment: true,
       },
     });
     return doctor;

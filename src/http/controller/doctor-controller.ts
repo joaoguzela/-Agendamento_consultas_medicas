@@ -16,7 +16,7 @@ export async function listDoctors(_request: FastifyRequest, reply: FastifyReply)
   }
 }
 
-export async function getPatient(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+export async function getDoctor(request: FastifyRequest, reply: FastifyReply): Promise<void> {
   const { doctorId } = request.params as GetDoctorsControllerRequest;
 
   try {

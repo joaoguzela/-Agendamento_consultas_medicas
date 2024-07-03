@@ -6,10 +6,6 @@ export interface DoctorRepository {
 }
 export type DoctorAndAppointments = Prisma.DoctorGetPayload<{
   include: {
-    MedicalAppointment: {
-      include: {
-        patient: true;
-      };
-    };
+    MedicalAppointment: true;
   };
 }>;
