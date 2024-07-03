@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { Doctor } from '@prisma/client';
-import { DoctorRepository } from './interfaces/i-doctor-repository';
+import { DoctorAndAppointments, DoctorRepository } from './interfaces/i-doctor-repository';
 
 export class PrismaDoctorRepository implements DoctorRepository {
   async findAll(): Promise<Doctor[] | []> {
@@ -8,10 +8,17 @@ export class PrismaDoctorRepository implements DoctorRepository {
     return doctor;
   }
 
-  async findById(id: string): Promise<Doctor | null> {
+  async findById(id: string): Promise<DoctorAndAppointments | null> {
     const doctor = await prisma.doctor.findUnique({
       where: {
         id,
+      },
+      include: {
+        MedicalAppointment: {
+          include: {
+            patient: true,
+          },
+        },
       },
     });
     return doctor;

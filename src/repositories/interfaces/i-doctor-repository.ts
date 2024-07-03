@@ -1,6 +1,15 @@
-import { Doctor } from '@prisma/client';
+import { Doctor, Prisma } from '@prisma/client';
 
 export interface DoctorRepository {
   findAll(): Promise<Doctor[] | []>;
-  findById(id: string): Promise<Doctor | null>;
+  findById(id: string): Promise<DoctorAndAppointments | null>;
 }
+export type DoctorAndAppointments = Prisma.DoctorGetPayload<{
+  include: {
+    MedicalAppointment: {
+      include: {
+        patient: true;
+      };
+    };
+  };
+}>;

@@ -63,8 +63,7 @@ docker-compose up -d
 
 - **GET \`/doctors\`**: Lista todos os médicos disponíveis.
 - **POST \`/appointments\`**: Cadastra uma nova consulta.
-- **GET \`/doctors/appointments/:doctorId`**: Lista as consultas agendadas para um médico específico.
-- **GET \`/api/patients/:patientId/appointments\`**: Lista as consultas agendadas para um paciente específico.
+- **GET \`/api/patients/:patientId\`**: Lista as consultas agendadas para um paciente específico.
 
 ## Tecnologias Utilizadas
 
