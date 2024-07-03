@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SeedStatus {
+  has_run Boolean @id @default(false)
+
+  @@map("seed_status")
+}
+
+model Patient {
+  id                 String               @id @default(uuid())
+  cpf                String               @unique
+  name               String?
+  date_of_birth      String
+  created_at         DateTime             @default(now())
+  MedicalAppointment MedicalAppointment[]
+
+  @@map("patients")
+}
+
+model Doctor {
+  id                 String               @id @default(uuid())
+  crm                String               @unique
+  name               String?
+  specialty          String
+  office_hour_start  String
+  office_hour_end    String
+  created_at         DateTime             @default(now())
+  MedicalAppointment MedicalAppointment[]
+
+  @@map("doctors")
+}
+
+model MedicalAppointment {
+  id               String   @id @default(uuid())
+  patient_id       String
+  doctor_id        String
+  date_appointment DateTime
+  created_at       DateTime @default(now())
+  patient          Patient  @relation(fields: [patient_id], references: [id])
+  doctor           Doctor   @relation(fields: [doctor_id], references: [id])
+}
