@@ -18,7 +18,6 @@ export async function getPatient(request: FastifyRequest, reply: FastifyReply): 
     if (error instanceof PatientNotExistsError) {
       reply.status(404).send({ message: error.message });
     } else {
-      console.error('Error fetching patient:', error);
       reply.status(500).send({ error: 'Internal server error.' });
     }
   }
