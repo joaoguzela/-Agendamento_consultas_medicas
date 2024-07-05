@@ -46,7 +46,7 @@ Para rodar o projeto, certifique-se de ter:
 Antes de iniciar o sistema pela primeira vez, execute o seed para criar registros iniciais de pacientes, médicos e consultas.
 
 ```bash
-npm run seed
+npm run db:seed
 ```
 ## Inicialização do Servidor
 ```bash
